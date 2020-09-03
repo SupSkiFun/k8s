@@ -25,7 +25,7 @@ spec:
         ver: "6"
     spec:
       containers:
-      - image: supskifun/web:amd64
+      - image: supskifun/web:go-1.15-amd64
         name: *nom
         ports:
         - containerPort: 80
