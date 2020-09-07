@@ -1,0 +1,181 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "kubernetes.io/psp": "eks.privileged"
+        },
+        "creationTimestamp": "2020-09-07T16:14:35Z",
+        "generateName": "psg-prod-5784cc466d-",
+        "labels": {
+            "app": "psg",
+            "eks.amazonaws.com/fargate-profile": "fp-default",
+            "env": "prod",
+            "pod-template-hash": "5784cc466d",
+            "ver": "6"
+        },
+        "name": "psg-prod-5784cc466d-f94s5",
+        "namespace": "default",
+        "ownerReferences": [
+            {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "ReplicaSet",
+                "name": "psg-prod-5784cc466d",
+                "uid": "c680f781-609b-45ca-96ea-1cabd325beeb"
+            }
+        ],
+        "resourceVersion": "3647",
+        "selfLink": "/api/v1/namespaces/default/pods/psg-prod-5784cc466d-f94s5",
+        "uid": "9a0eaa7d-1728-40ee-a430-ea72d8c5c23a"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "supskifun/web:go-1.15-amd64",
+                "imagePullPolicy": "IfNotPresent",
+                "livenessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/",
+                        "port": 80,
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 5,
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1
+                },
+                "name": "psg",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "name": "http",
+                        "protocol": "TCP"
+                    }
+                ],
+                "readinessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/",
+                        "port": 80,
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 30,
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1
+                },
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "32Mi"
+                    },
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "8Mi"
+                    }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "default-token-vtm5n",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "fargate-ip-192-168-189-127.us-west-2.compute.internal",
+        "priority": 2000001000,
+        "priorityClassName": "system-node-critical",
+        "restartPolicy": "Always",
+        "schedulerName": "fargate-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "default-token-vtm5n",
+                "secret": {
+                    "defaultMode": 420,
+                    "secretName": "default-token-vtm5n"
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-09-07T16:15:41Z",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-09-07T16:16:17Z",
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-09-07T16:16:17Z",
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2020-09-07T16:15:41Z",
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://358bed0a3dad6d445ef99bd5a956d12d17531c5ae2ce16135d45b81b5c09c68c",
+                "image": "docker.io/supskifun/web:go-1.15-amd64",
+                "imageID": "docker.io/supskifun/web@sha256:9c576f9238f95a3c854503b3dc842cf2ad50d76c87f74cbaae0d41bdef36bcd2",
+                "lastState": {},
+                "name": "psg",
+                "ready": true,
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2020-09-07T16:15:46Z"
+                    }
+                }
+            }
+        ],
+        "hostIP": "192.168.189.127",
+        "phase": "Running",
+        "podIP": "192.168.189.127",
+        "podIPs": [
+            {
+                "ip": "192.168.189.127"
+            }
+        ],
+        "qosClass": "Burstable",
+        "startTime": "2020-09-07T16:15:41Z"
+    }
+}
