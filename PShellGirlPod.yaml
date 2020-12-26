@@ -6,7 +6,7 @@ metadata:
     app: psg
 spec:
   containers:
-    - image: supskifun/web:go-1.15-amd64
+    - image: supskifun/web:go-1.15.4-amd64
       name: psg
       ports:
         - containerPort: 8080
