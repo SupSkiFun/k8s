@@ -33,7 +33,7 @@ spec:
         ver: "6"
     spec:
       containers:
-      - image: supskifun/psg:go-1.16.5-arm64
+      - image: supskifun/psg:go-1.16.6-arm64
         name: *nom
         ports:
         - containerPort: 80
